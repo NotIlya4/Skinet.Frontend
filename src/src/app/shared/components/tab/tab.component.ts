@@ -6,8 +6,6 @@ import {PlaceholderSize} from "../placeholders/text-content-placeholder/placehol
   templateUrl: './tab.component.html'
 })
 export class TabComponent {
-  @Input() tabName!: string;
-
   private _tabs?: string[];
   @Input()
   set tabs(value: string[] | undefined){

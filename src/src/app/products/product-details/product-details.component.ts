@@ -26,7 +26,7 @@ export class ProductDetailsComponent implements OnInit{
     if (id){
       this.productsService.getProduct(id).subscribe(product => {
         this.product = product;
-        this.breadcrumbService.set('shop/:id', product.name);
+        this.breadcrumbService.set('products/:id', product.name);
       })
     }
   }

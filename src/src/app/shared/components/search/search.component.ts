@@ -5,15 +5,16 @@ import {Component, EventEmitter, Output} from '@angular/core';
   templateUrl: './search.component.html'
 })
 export class SearchComponent {
-  value?: string;
-  lastEmittedValue?: string;
-  @Output() searchClicked = new EventEmitter<string>();
+  value: string = '';
+  @Output() searchClicked: EventEmitter<string> = new EventEmitter<string>();
 
-  onSearchClicked(event: any){
-    if (this.lastEmittedValue === this.value){
-      return;
+  onSearchClicked(event: any): void {
+    this.searchClicked.emit(this.value);
+  }
+
+  setValue($event: string): void {
+    if ($event !== this.value) {
+      this.value = $event;
     }
-
-    this.searchClicked.emit(this.value ?? '');
   }
 }

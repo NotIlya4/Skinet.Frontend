@@ -25,5 +25,42 @@ hr {
   cursor: pointer;
 }
 
+.after-nav-bar{
+  margin-top: 64px;
+}
+
+.btn {
+  text-transform: none !important;
+}
+
+.left-group {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.right-group {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.top-group {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
+.bottom-group {
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+input {
+  box-shadow: none !important;
+}
+
+select{
+  box-shadow: none !important;
+  cursor: pointer;
+}
+
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

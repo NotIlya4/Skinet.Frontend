@@ -9,7 +9,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {RouterLink} from "@angular/router";
 import { TextContentPlaceholderComponent } from './components/placeholders/text-content-placeholder/text-content-placeholder.component';
 import {TabComponent} from "./components/tab/tab.component";
-import { PrimaryButtonComponent } from './components/primary-button/primary-button.component';
+import { PrimaryOutlineButtonComponent } from './components/primary-outline-button/primary-outline-button.component';
 import { TextAutoPlaceholderComponent } from './components/placeholders/text-auto-placeholder/text-auto-placeholder.component';
 import { CirclePlaceholderComponent } from './components/placeholders/circle-placeholder/circle-placeholder.component';
 import { ShoppingCardIconComponent } from './components/icons/shopping-card-icon/shopping-card-icon.component';
@@ -20,6 +20,10 @@ import { TrashIconComponent } from './components/icons/trash-icon/trash-icon.com
 import { IncreaseProductsInBasketDirective } from './directives/increase-products-in-basket.directive';
 import { DecreaseProductsInBasketDirective } from './directives/decrease-products-in-basket.directive';
 import { RemoveProductsInBasketDirective } from './directives/remove-products-in-basket.directive';
+import { PrimaryButtonComponent } from './components/primary-button/primary-button.component';
+import { FormInputComponent } from './components/form-input/form-input.component';
+import { SelectComponent } from './components/select/select.component';
+import { ImagePlaceholderComponent } from './components/placeholders/image-placeholder/image-placeholder.component';
 
 
 @NgModule({
@@ -29,7 +33,7 @@ import { RemoveProductsInBasketDirective } from './directives/remove-products-in
     SearchComponent,
     TextContentPlaceholderComponent,
     TabComponent,
-    PrimaryButtonComponent,
+    PrimaryOutlineButtonComponent,
     TextAutoPlaceholderComponent,
     CirclePlaceholderComponent,
     ShoppingCardIconComponent,
@@ -39,7 +43,11 @@ import { RemoveProductsInBasketDirective } from './directives/remove-products-in
     TrashIconComponent,
     IncreaseProductsInBasketDirective,
     DecreaseProductsInBasketDirective,
-    RemoveProductsInBasketDirective
+    RemoveProductsInBasketDirective,
+    PrimaryButtonComponent,
+    FormInputComponent,
+    SelectComponent,
+    ImagePlaceholderComponent
   ],
     imports: [
       CommonModule,
@@ -55,7 +63,7 @@ import { RemoveProductsInBasketDirective } from './directives/remove-products-in
     SearchComponent,
     TextContentPlaceholderComponent,
     TabComponent,
-    PrimaryButtonComponent,
+    PrimaryOutlineButtonComponent,
     TextAutoPlaceholderComponent,
     CirclePlaceholderComponent,
     ShoppingCardIconComponent,
@@ -65,7 +73,11 @@ import { RemoveProductsInBasketDirective } from './directives/remove-products-in
     TrashIconComponent,
     IncreaseProductsInBasketDirective,
     DecreaseProductsInBasketDirective,
-    RemoveProductsInBasketDirective
+    RemoveProductsInBasketDirective,
+    PrimaryButtonComponent,
+    FormInputComponent,
+    SelectComponent,
+    ImagePlaceholderComponent
   ]
 })
 export class SharedModule { }

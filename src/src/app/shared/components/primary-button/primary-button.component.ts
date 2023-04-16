@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-primary-button',
@@ -6,9 +6,11 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./primary-button.component.scss']
 })
 export class PrimaryButtonComponent {
-  @Output() click = new EventEmitter<MouseEvent>();
+  @Output() btnClick = new EventEmitter<MouseEvent>();
+  @Input() btnClass: string = '';
+  @Input() btnStyle: string = '';
 
   onClick($event: MouseEvent){
-    this.click.emit($event);
+    this.btnClick.emit($event);
   }
 }

@@ -1,6 +1,6 @@
 .image :hover{
   opacity: 1;
-  & button{
+  & app-primary-button{
     transform: none;
   }
 }
@@ -15,16 +15,16 @@
   opacity: 0;
   transition: all 0.5s;
 
-  & button{
+  & app-primary-button{
     z-index: 1;
     transition: all 0.5s;
   }
 
-  & button:first-of-type{
+  & app-primary-button:first-of-type{
     transform: translateX(-20px);
   }
 
-  & button:last-of-type{
+  & app-primary-button:last-of-type{
     transform: translateX(20px);
   }
 }

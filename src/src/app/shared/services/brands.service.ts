@@ -7,12 +7,12 @@ import {IBrand} from "../models/brand";
   providedIn: 'root'
 })
 export class BrandsService {
-  private baseUrl: string = environment.productsUrl;
+  private baseUrl: string = environment.productServiceUrl;
 
   constructor(private httpClient: HttpClient) {
   }
 
   get(){
-    return this.httpClient.get<IBrand[]>(`${this.baseUrl}brands`);
+    return this.httpClient.get<string[]>(`${this.baseUrl}brands`);
   }
 }

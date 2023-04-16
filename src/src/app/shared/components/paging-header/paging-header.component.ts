@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'app-paging-header',
+  selector: 'app-paging-header[currentPage][pageSize]',
   templateUrl: './paging-header.component.html',
   styleUrls: ['./paging-header.component.scss']
 })
@@ -10,7 +10,7 @@ export class PagingHeaderComponent {
   @Input() pageSize!: number;
   @Input() objectsCount?: number;
 
-  getFirstDisplayingNumber(): number | undefined{
+  getFirstDisplayingNumber(): number {
     if (!this.isInited()){
       return 0;
     }
@@ -18,7 +18,7 @@ export class PagingHeaderComponent {
     return (this.currentPage - 1) * this.pageSize + 1;
   }
 
-  getLastDisplayingNumber(): number{
+  getLastDisplayingNumber(): number {
     if (!this.isInited()){
       return 0;
     }
@@ -26,7 +26,7 @@ export class PagingHeaderComponent {
     return Math.min(this.currentPage * this.pageSize, this.objectsCount!);
   }
 
-  isInited(): boolean{
+  isInited(): boolean {
     return this.objectsCount !== undefined;
   }
 }

@@ -4,11 +4,27 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LinkProviderService {
-  get basketLink(): string {
-    return 'basket';
+  get basket(): string {
+    return '/shop/basket';
   }
 
-  productDetailsLink(productId: string): string {
-    return `/shop/${productId}`;
+  productDetail(productId: string): string {
+    return `/shop/products/${productId}`;
+  }
+
+  get home(): string {
+    return '/';
+  }
+
+  get products(): string {
+    return '/shop/products';
+  }
+
+  get login(): string {
+    return '/account/login';
+  }
+
+  get register(): string {
+    return '/account/register';
   }
 }

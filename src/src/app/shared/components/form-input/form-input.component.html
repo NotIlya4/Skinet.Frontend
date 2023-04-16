@@ -1,0 +1,19 @@
+<div *ngIf="!withLabel">
+  <input
+    [(ngModel)]="value"
+    class="form-control {{inputClass}}"
+    style="{{inputStyle}}"
+    [placeholder]="inputPlaceholder"
+    [type]="inputType">
+</div>
+
+<div class="form-floating" *ngIf="withLabel">
+  <input
+    [(ngModel)]="value"
+    [type]="inputType"
+    class="form-control {{inputClass}}"
+    style="{{inputStyle}}"
+    id="floatingInput"
+    [placeholder]="inputPlaceholder">
+  <label for="floatingInput">{{label}}</label>
+</div>

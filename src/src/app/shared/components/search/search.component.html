@@ -1,10 +1,12 @@
 <div class="d-flex gap-2">
-  <input
-    [(ngModel)]="value"
-    (keyup.enter)="onSearchClicked($event)"
-    class="form-control"
+  <app-form-input
+    [value]="value"
+    (valueChanged)="setValue($event)"
+    class="d-inline-block"
     style="width: 300px"
-    placeholder="Search"
-    type="text">
-  <app-primary-button (click)="onSearchClicked($event)">Search</app-primary-button>
+    inputType="text"
+    inputPlaceholder="Search"
+    label="Search"
+    [withLabel]="false"/>
+  <app-primary-outline-button (btnClick)="onSearchClicked($event)">Search</app-primary-outline-button>
 </div>

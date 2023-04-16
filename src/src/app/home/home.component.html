@@ -1,11 +1,15 @@
-<ngb-carousel [interval]="5000">
+<app-nav-bar class="fixed-top"></app-nav-bar>
 
-  <ng-template ngbSlide *ngFor="let img of images; index as i">
+<div class="after-nav-bar">
+  <ngb-carousel [interval]="5000">
 
-    <a class="d-block carousel-item">
-      <img class="w-100" [src]="img" alt=""/>
-    </a>
+    <ng-template ngbSlide *ngFor="let img of images; index as i">
 
-  </ng-template>
+      <a class="d-block carousel-item">
+        <img class="w-100" [src]="img" alt=""/>
+      </a>
 
-</ngb-carousel>
+    </ng-template>
+
+  </ngb-carousel>
+</div>
