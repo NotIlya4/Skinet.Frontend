@@ -1,0 +1,9 @@
+<ul class="list-group" style="cursor: pointer">
+  <li class="list-group-item list-group-item-action"
+      *ngFor="let tab of tabs"
+      [class.active]="tab === this.selectedTab"
+      [class.disabled]="disabled"
+      (click)="onTabChange(tab)">
+    {{tab}}
+  </li>
+</ul>

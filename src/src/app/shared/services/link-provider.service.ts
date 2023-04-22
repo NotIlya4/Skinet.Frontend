@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class LinkProviderService {
+export class LinkProvider {
   get basket(): string {
     return '/shop/basket';
   }

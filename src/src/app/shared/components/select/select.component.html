@@ -1,4 +1,4 @@
-<select class="form-select" (change)="onOptionChanged($event)">
+<select class="form-select" [disabled]="disabled" (change)="onOptionChanged($event)">
   <option
     *ngFor="let option of options"
     [value]="option">{{option}}</option>

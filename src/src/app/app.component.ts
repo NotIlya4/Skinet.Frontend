@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Observable, Subject} from "rxjs";
-import {BasketService} from "./shared/services/basket.service";
+import {BasketStorage} from "./shared/services/basket-storage.service";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'Frontend';
   cardValue: number = 0;
 
-  constructor(private basketService: BasketService) {
+  constructor(private basketService: BasketStorage) {
     basketService.totalQuantity$.subscribe(value => this.cardValue = value);
   }
 }

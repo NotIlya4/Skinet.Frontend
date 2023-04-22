@@ -1,8 +1,8 @@
 <app-nav-bar class="fixed-top"></app-nav-bar>
 
 <div class="d-flex justify-content-center align-items-center vh-100">
-  <div style="width: 300px">
-    <form class="form-signin text-center">
+  <div [formGroup]="loginForm" (ngSubmit)="onSignInPressed()" style="width: 300px">
+    <div class="text-center">
       <div class="mb-4">
         <h2 class="h3 mb-3 font-weight-normal">Please sign in
         </h2>
@@ -14,12 +14,14 @@
           inputPlaceholder="example@sample.com"
           inputClass="bottom-group"
           inputStyle="margin-bottom: -1px"
-          label="Email address" />
+          label="Email address"
+          formControlName="email"/>
         <app-form-input
           inputType="password"
           inputPlaceholder="Password"
           inputClass="top-group"
-          label="Password"></app-form-input>
+          label="Password"
+          formControlName="password"/>
       </div>
 
       <div class="checkbox mb-3 text-center">
@@ -28,10 +30,9 @@
         </label>
       </div>
 
-      <div class="d-flex gap-3">
-        <app-primary-button class="w-100" btnClass="w-100">Sign In</app-primary-button>
-        <app-primary-button class="w-100" btnClass="w-100">Sign Up</app-primary-button>
+      <div class="d-flex gap-3 justify-content-center">
+        <app-primary-button type="submit" class="w-100" btnClass="w-100" (btnClick)="onSignInPressed()">Sign In</app-primary-button>
       </div>
-    </form>
+    </div>
   </div>
 </div>

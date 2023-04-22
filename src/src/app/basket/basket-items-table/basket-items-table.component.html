@@ -1,0 +1,51 @@
+<table class="table-responsive table">
+  <thead class="text-center">
+  <tr>
+    <th scope="col" class="text-start">
+      Product
+    </th>
+    <th scope="col" class="">
+      Price
+    </th>
+    <th scope="col" class="">
+      Quantity
+    </th>
+    <th scope="col" class="">
+      Total
+    </th>
+    <th scope="col" class="w-auto">
+      Remove
+    </th>
+  </tr>
+  </thead>
+  <tbody class="table-group-divider align-middle text-center">
+  <tr class="" *ngFor="let item of basketItems">
+    <th scope="row" class="text-start fw-normal">
+      <div class="p-2 d-flex flex-nowrap" style="white-space: nowrap">
+        <img src="{{item.product.pictureUrl}}" alt="{{item.product.name}}"
+             class="img-fluid" style="max-height: 50px;">
+        <div class="ms-3 d-inline-block align-middle">
+          <app-link [routerLink]="linkProvider.productDetail(item.product.id)">{{item.product.name}}</app-link>
+          <div class="text-muted">Type: {{item.product.productType}}</div>
+        </div>
+      </div>
+    </th>
+    <td class="" style="width: 160px">
+      {{item.product.price | currency}}
+    </td>
+    <td class="" style="width: 160px">
+      <div class="d-flex align-items-center justify-content-center">
+        <app-minus-icon appDecreaseProductsInBasket [product]="item.product" style="cursor: pointer;"></app-minus-icon>
+        <span class="mx-2" style="">{{item.quantity}}</span>
+        <app-plus-icon appIncreaseProductsInBasket [product]="item.product" style="cursor: pointer;"></app-plus-icon>
+      </div>
+    </td>
+    <td class="" style="width: 160px">
+      {{item.product.price * item.quantity | currency}}
+    </td>
+    <td class="" style="width: 1%;">
+      <app-trash-icon appRemoveProductsInBasket [product]="item.product" style="cursor: pointer;"></app-trash-icon>
+    </td>
+  </tr>
+  </tbody>
+</table>

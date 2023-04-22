@@ -1,0 +1,34 @@
+<ng-template #image>
+  <app-image-placeholder class="d-inline-block w-100" style="height: 250px"></app-image-placeholder>
+</ng-template>
+
+<ng-template #body>
+  <h5 class="card-title mb-2" style="width: 80%;">
+    <app-text-auto-placeholder></app-text-auto-placeholder>
+  </h5>
+  <div class="d-flex gap-1 mb-0">
+    <app-text-auto-placeholder style="width: 60%"></app-text-auto-placeholder>
+    <app-text-auto-placeholder style="width: 30%"></app-text-auto-placeholder>
+  </div>
+  <div class="d-flex gap-1 mb-0">
+    <app-text-auto-placeholder style="width: 30%"></app-text-auto-placeholder>
+    <app-text-auto-placeholder style="width: 50%"></app-text-auto-placeholder>
+  </div>
+  <div class="d-flex gap-1 mb-0">
+    <app-text-auto-placeholder style="width: 60%"></app-text-auto-placeholder>
+  </div>
+  <div class="d-flex gap-1 mb-0">
+    <app-text-auto-placeholder style="width: 50%"></app-text-auto-placeholder>
+    <app-text-auto-placeholder style="width: 40%"></app-text-auto-placeholder>
+  </div>
+  <div class="d-flex gap-1 mb-0">
+    <app-text-auto-placeholder style="width: 20%"></app-text-auto-placeholder>
+    <app-text-auto-placeholder style="width: 40%"></app-text-auto-placeholder>
+  </div>
+  <div class="d-flex gap-1 mb-0">
+    <app-text-auto-placeholder style="width: 30%"></app-text-auto-placeholder>
+    <app-text-auto-placeholder style="width: 50%"></app-text-auto-placeholder>
+  </div>
+</ng-template>
+
+<app-card class="d-inline-block" style="width: 250px" [imageRef]="image" [bodyRef]="body"></app-card>

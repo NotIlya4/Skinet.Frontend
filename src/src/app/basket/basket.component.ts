@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {BasketService} from "../shared/services/basket.service";
+import {BasketStorage} from "../shared/services/basket-storage.service";
 import {IBasketItem, IReadonlyBasketItem} from "../shared/models/basket-item";
 import {IBasketTotals} from "./order-totals/basket-totals";
 
@@ -9,14 +9,16 @@ import {IBasketTotals} from "./order-totals/basket-totals";
   styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent {
-  basketItems?: ReadonlyArray<IReadonlyBasketItem>
-  basketTotals?: IBasketTotals;
+  basketItems: IReadonlyBasketItem[]
+  basketTotals: IBasketTotals;
 
-  constructor(private basketService: BasketService) {
-    basketService
+  constructor(private basketStorage: BasketStorage) {
+    this.basketItems = basketStorage.basketItems;
+    basketStorage
       .basketItems$
       .subscribe((value) => this.basketItems = value);
-    basketService
+    this.basketTotals = basketStorage.basketTotals;
+    basketStorage
       .basketTotals$
       .subscribe(value => this.basketTotals = value);
   }

@@ -23,7 +23,7 @@ export class Basket {
     return this._id;
   }
 
-  public get items(): ReadonlyArray<IReadonlyBasketItem> {
+  public get items(): IReadonlyBasketItem[] {
     return this._items;
   }
 

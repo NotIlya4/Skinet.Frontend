@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {faMinusCircle} from "@fortawesome/free-solid-svg-icons/faMinusCircle";
 import {faPlusCircle} from "@fortawesome/free-solid-svg-icons/faPlusCircle";
 import {BreadcrumbService} from "xng-breadcrumb";
-import {ProductsService} from "../../shared/services/products-service/products.service";
+import {ProductsService} from "../../shared/services/product/products.service";
 
 @Component({
   selector: 'app-product-details',
@@ -24,7 +24,7 @@ export class ProductDetailsComponent implements OnInit{
   ngOnInit() {
     const id: string | null = this.activatedRoot.snapshot.paramMap.get('id');
     if (id){
-      this.productsService.getProduct(id).subscribe(product => {
+      this.productsService.fetchProduct(id).subscribe(product => {
         this.product = product;
         this.breadcrumbService.set('products/:id', product.name);
       })

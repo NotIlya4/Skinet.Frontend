@@ -1,0 +1,5 @@
+<div class="d-flex justify-content-center flex-wrap gap-3">
+  <ng-container *ngFor="let elementContext of elementContexts">
+    <ng-container *ngTemplateOutlet="elementRef; context: {$implicit: elementContext}"></ng-container>
+  </ng-container>
+</div>

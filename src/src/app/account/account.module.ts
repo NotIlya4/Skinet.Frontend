@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import {AccountRoutingModule} from "./account-routing.module";
 import {SharedModule} from "../shared/shared.module";
 import {CoreModule} from "../core/core.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -15,7 +16,8 @@ import {CoreModule} from "../core/core.module";
     CommonModule,
     AccountRoutingModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule
   ]
 })
 export class AccountModule { }

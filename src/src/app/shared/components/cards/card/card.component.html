@@ -1,0 +1,13 @@
+<div class="card h-100 w-100">
+
+  <div class="card-img-top">
+    <ng-container *ngTemplateOutlet="imageRef"></ng-container>
+    <hr>
+  </div>
+
+  <div class="card-body pt-2">
+    <ng-container *ngTemplateOutlet="bodyRef"></ng-container>
+  </div>
+
+  <div [class.white-mask]="disabled"></div>
+</div>

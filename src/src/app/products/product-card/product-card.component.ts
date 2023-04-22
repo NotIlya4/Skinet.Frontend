@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {IProduct} from "../../shared/models/product";
-import {LinkProviderService} from "../../shared/services/link-provider.service";
-import {BasketService} from "../../shared/services/basket.service";
+import {LinkProvider} from "../../shared/services/link-provider.service";
+import {BasketStorage} from "../../shared/services/basket-storage.service";
 
 @Component({
   selector: 'app-product-card',
@@ -10,8 +10,9 @@ import {BasketService} from "../../shared/services/basket.service";
 })
 export class ProductCardComponent {
   @Input() product!: IProduct;
+  @Input() disabled: boolean = false;
 
-  constructor(public linkProvider: LinkProviderService, private basketService: BasketService) {
+  constructor(public linkProvider: LinkProvider, private basketService: BasketStorage) {
   }
 
   public increaseProduct(product: IProduct): void {

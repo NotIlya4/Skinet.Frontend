@@ -1,14 +1,14 @@
 import {Directive, HostListener, Input} from '@angular/core';
 import {IProduct} from "../models/product";
-import {BasketService} from "../services/basket.service";
+import {BasketStorage} from "../services/basket-storage.service";
 
 @Directive({
-  selector: '[appRemoveProductsInBasket]'
+  selector: '[appRemoveProductsInBasket][product]'
 })
 export class RemoveProductsInBasketDirective {
   @Input() product!: IProduct;
 
-  constructor(private basketService: BasketService) {
+  constructor(private basketService: BasketStorage) {
   }
 
   @HostListener('click')

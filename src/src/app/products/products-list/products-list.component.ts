@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {IProduct} from "../../shared/models/product";
 import {Pagination} from "../../shared/models/pagination";
-import {IProductsFiltering} from "../../shared/services/products-service/products-filtering";
-import {ProductsService} from "../../shared/services/products-service/products.service";
-import {BrandsService} from "../../shared/services/brands.service";
-import {ProductTypesService} from "../../shared/services/product-types.service";
+import {IProductsFiltering} from "../../shared/services/product/products-filtering";
+import {ProductsService} from "../../shared/services/product/products.service";
+import {BrandsService} from "../../shared/services/product/brands.service";
+import {ProductTypesService} from "../../shared/services/product/product-types.service";
 import {PlaceholderSize} from "../../shared/components/placeholders/text-content-placeholder/placeholder-size";
 
 @Component({
@@ -12,12 +12,13 @@ import {PlaceholderSize} from "../../shared/components/placeholders/text-content
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })
-export class ProductsListComponent implements OnInit{
-  products?: IProduct[];
-  brandFilters?: string[];
-  productTypeFilters?: string[];
+export class ProductsListComponent{
+  products: IProduct[] | null = null;
+  brandFilters: string[] | null = null;
+  productTypeFilters: string[] | null = null;
+  isLoading: boolean = true;
 
-  productsTotalCount?: number;
+  productsTotalCount: number | null = null;
   pageSize: number = 6;
   currentPage: number = 1;
   productSearch?: string;
@@ -25,27 +26,31 @@ export class ProductsListComponent implements OnInit{
   selectedBrand: string = 'All';
   selectedProductType: string = 'All';
   selectedSorting: string = '+name';
-  sortingsMapping = [
-    {name: 'Alphabetical', value: '+name'},
-    {name: 'Price Low To High', value: '+price'},
-    {name: 'Price High To Low', value: '-price'}
+  sortings = [
+    {displayName: 'Alphabetical', value: '+name'},
+    {displayName: 'Price Low To High', value: '+price'},
+    {displayName: 'Price High To Low', value: '-price'}
   ];
 
-  getSortingMappingsAsStrings(): string[] {
-    return this.sortingsMapping.map(s => s.name);
+  get sortingDisplayNames(): string[] {
+    return this.sortings.map(s => s.displayName);
+  }
+
+  mapSortings(displayName: string): string {
+    return this.sortings.find(s => s.displayName === displayName)?.value ?? '+name';
   }
 
   constructor(private productsService: ProductsService, private brandsService: BrandsService, private productTypesService: ProductTypesService) {
-
+    brandsService.fetch().subscribe(value => {
+      this.brandFilters = ['All', ...value];
+    })
+    productTypesService.fetch().subscribe(value => {
+      this.productTypeFilters = ['All', ...value];
+    })
+    this.fetchProducts();
   }
 
-  ngOnInit(){
-    this.getProducts();
-    this.getBrandFilters();
-    this.getProductTypeFilters();
-  }
-
-  getProducts(){
+  fetchProducts(){
     const productType: undefined | string = this.selectedProductType === 'All' ? undefined : this.selectedProductType;
     const brand: undefined | string = this.selectedBrand === 'All' ? undefined : this.selectedBrand;
 
@@ -57,65 +62,55 @@ export class ProductsListComponent implements OnInit{
       searching: this.productSearch
     };
 
-    this.productsService.getProducts(pagination, filtering, [this.selectedSorting])
+    this.isLoading = true;
+    this.productsService.fetchProducts(pagination, filtering, [this.selectedSorting])
       .subscribe(value => {
         this.products = value.products;
         this.productsTotalCount = value.total;
+        this.isLoading = false;
       });
-  }
-
-  getBrandFilters(){
-    this.brandsService.get().subscribe(brands => {
-      this.brandFilters = ['All', ...brands];
-    })
-  }
-
-  getProductTypeFilters(){
-    this.productTypesService.get().subscribe(productTypes => {
-      this.productTypeFilters = ['All', ...productTypes];
-    })
   }
 
   reset(){
     this.currentPage = 1;
-    this.products = undefined;
-    this.productsTotalCount = undefined;
+    // this.products = null;
+    // this.productsTotalCount = null;
   }
 
-  onBrandSelected(brand: string){
+  onBrandChange(brand: string){
     this.reset();
 
     this.selectedBrand = brand;
-    this.getProducts();
+    this.fetchProducts();
   }
 
-  onProductTypeSelected(productType: string){
+  onProductTypeChange(productType: string){
     this.reset();
 
     this.selectedProductType = productType;
-    this.getProducts();
+    this.fetchProducts();
   }
 
-  onSortingChanged($event: string){
+  onSortingChange($event: string){
     this.reset();
 
-    this.selectedSorting = this.sortingsMapping.find(s => s.name === $event)!.value;
-    this.getProducts();
+    this.selectedSorting = this.mapSortings($event);
+    this.fetchProducts();
   }
 
-  onSearchClicked(newProductSearch?: string){
+  onSearchChange(newProductSearch?: string){
     this.reset();
 
     this.productSearch = newProductSearch;
-    this.getProducts();
+    this.fetchProducts();
   }
 
-  onPageChanged(newPage: number){
-    this.products = undefined;
+  onPageChange(newPage: number){
+    // this.products = null;
 
     this.currentPage = newPage;
-    this.getProducts();
+    this.fetchProducts();
   }
 
-  protected readonly PlaceholderSize = PlaceholderSize;
+  protected readonly Array = Array;
 }
