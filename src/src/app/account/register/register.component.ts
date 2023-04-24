@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../shared/services/auth/auth.service";
+import {Router} from "@angular/router";
+import {LinkProvider} from "../../shared/services/link-provider.service";
 
 @Component({
   selector: 'app-register',
@@ -16,7 +19,13 @@ export class RegisterComponent {
     password: this.password
   });
 
-  onSubmit(): void {
+  constructor(private authService: AuthService, private router: Router, private links: LinkProvider) {
 
+  }
+
+  onSubmit(): void {
+    this.authService.register(this.form.value).subscribe(value => {
+      this.router.navigateByUrl(this.links.products);
+    });
   }
 }

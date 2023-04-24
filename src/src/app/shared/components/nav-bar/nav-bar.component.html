@@ -42,7 +42,7 @@
       <div class="me-3 d-flex">
         <ng-container *ngIf="userInfo === null">
           <app-primary-outline-button [routerLink]="linkProvider.login" class="me-3" (btnClick)="isMenuCollapsed=true">Login</app-primary-outline-button>
-          <app-primary-outline-button [routerLink]="linkProvider.login" (btnClick)="isMenuCollapsed=true">Sign Up</app-primary-outline-button>
+          <app-primary-outline-button [routerLink]="linkProvider.register" (btnClick)="isMenuCollapsed=true">Sign Up</app-primary-outline-button>
         </ng-container>
 
         <ng-container *ngIf="userInfo !== null">
