@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {LinkProvider} from "../../shared/services/link-provider.service";
 import {IJwtTokenPair} from "../../shared/models/jwt-token-pair";
 import {IBadResponse} from "../../shared/models/bad-response";
+import {map, switchMap, timer} from "rxjs";
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,24 @@ export class RegisterComponent {
   error: string | null = null;
 
   constructor(private authService: AuthService, private router: Router, private links: LinkProvider) {
-
+    this.email.addAsyncValidators(c => {
+      return timer(500).pipe(
+        switchMap(() => {
+          return this.authService.isEmailBusy(c.value).pipe(
+            map(isBusy => isBusy ? {emailBusy: true} : null)
+          );
+        })
+      )
+    });
+    this.username.addAsyncValidators(c => {
+      return timer(500).pipe(
+        switchMap(() => {
+          return this.authService.isUsernameBusy(c.value).pipe(
+            map(isBusy => isBusy ? {usernameBusy: true} : null)
+          );
+        })
+      )
+    });
   }
 
   onSubmit(): void {

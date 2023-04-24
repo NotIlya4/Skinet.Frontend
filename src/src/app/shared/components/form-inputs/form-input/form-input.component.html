@@ -10,9 +10,11 @@
     [placeholder]="placeholder">
   <label for="{{label}}" *ngIf="withLabel">{{label}}</label>
   <div *ngIf="showInvalid()" class="invalid-feedback text-start">
-    <div *ngIf="isRequiredError()">{{label}} is required</div>
-    <div *ngIf="isEmailError() && !isRequiredError()">Email must be a valid email address</div>
-    <div *ngIf="isTestError()">Test error</div>
+    <div *ngIf="checkIfFlagContain('required')">{{label}} is required</div>
+    <div *ngIf="checkIfFlagContain('email') && !checkIfFlagContain('required')">Email must be a valid email address</div>
+    <div *ngIf="checkIfFlagContain('emailBusy')">Email has already been taken</div>
+    <div *ngIf="checkIfFlagContain('usernameBusy')">Username has already been taken</div>
+    <div *ngIf="checkIfFlagContain('test')">Test error</div>
     <div *ngIf="this.control.errors">
       <div *ngFor="let err of this.control.errors['customErrors']">{{err}}</div>
     </div>

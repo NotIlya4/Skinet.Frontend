@@ -53,23 +53,9 @@ export class FormInputComponent implements ControlValueAccessor {
     return this.control.invalid ?? false;
   }
 
-  isTestError(): boolean {
+  checkIfFlagContain(flag: string): boolean {
     if (this.control.errors) {
-      return this.control.errors['test'] === true;
-    }
-    return false;
-  }
-
-  isRequiredError(): boolean {
-    if (this.control.errors) {
-      return this.control.errors['required'] === true;
-    }
-    return false;
-  }
-
-  isEmailError(): boolean {
-    if (this.control.errors) {
-      return this.control.errors['email'] === true;
+      return this.control.errors[flag] === true;
     }
     return false;
   }

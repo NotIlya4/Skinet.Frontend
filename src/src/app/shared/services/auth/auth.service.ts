@@ -70,6 +70,18 @@ export class AuthService {
     );
   }
 
+  public isEmailBusy(email: string): Observable<boolean> {
+    return this.client.get<boolean>(`${this.baseUrl}email/${email}/busy`).pipe(
+      this.pipeMapError()
+    );
+  }
+
+  public isUsernameBusy(username: string): Observable<boolean> {
+    return this.client.get<boolean>(`${this.baseUrl}username/${username}/busy`).pipe(
+      this.pipeMapError()
+    );
+  }
+
   private fetchUserInfo(): Observable<IUserInfo> {
     return this.client.get<IUserInfo>(this.baseUrl).pipe(
       this.pipeMapError()
