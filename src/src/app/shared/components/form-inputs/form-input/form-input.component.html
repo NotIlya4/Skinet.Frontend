@@ -1,0 +1,20 @@
+<div class="form-floating">
+  <input
+    [(ngModel)]="value"
+    [type]="type"
+    [class.is-valid]="showValid()"
+    [class.is-invalid]="showInvalid()"
+    (focusout)="onTouched(); touched = true"
+    class="form-control"
+    id="{{label}}"
+    [placeholder]="placeholder">
+  <label for="{{label}}" *ngIf="withLabel">{{label}}</label>
+  <div *ngIf="showInvalid()" class="invalid-feedback text-start">
+    <div *ngIf="isRequiredError()">{{label}} is required</div>
+    <div *ngIf="isEmailError() && !isRequiredError()">Email must be a valid email address</div>
+    <div *ngIf="isTestError()">Test error</div>
+    <div *ngIf="this.control.errors">
+      <div *ngFor="let err of this.control.errors['customErrors']">{{err}}</div>
+    </div>
+  </div>
+</div>

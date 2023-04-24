@@ -1,1 +1,1 @@
-<button class="app-primary-button {{btnClass}}" style="{{btnStyle}}" (click)="onClick($event)"><ng-content></ng-content></button>
+<button [disabled]="disabled" [type]="type" class="app-primary-button w-100 h-100 {{btnClass}}" style="{{btnStyle}}" (click)="onClick($event)"><ng-content></ng-content></button>

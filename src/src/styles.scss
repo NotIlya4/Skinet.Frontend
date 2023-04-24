@@ -89,6 +89,10 @@ select{
   width: 100%;
 }
 
+app-nav-bar {
+  @extend .fixed-top;
+}
+
 .app-primary-outline-button {
   @extend .btn;
   @extend .btn-outline-primary;

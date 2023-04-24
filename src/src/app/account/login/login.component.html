@@ -1,38 +1,18 @@
-<app-nav-bar class="fixed-top"></app-nav-bar>
+<div class="text-center" [formGroup]="form" (ngSubmit)="onSignInPressed()" style="width: 300px">
+  <h2 class="mb-4">Please Sign In</h2>
 
-<div class="d-flex justify-content-center align-items-center vh-100">
-  <div [formGroup]="loginForm" (ngSubmit)="onSignInPressed()" style="width: 300px">
-    <div class="text-center">
-      <div class="mb-4">
-        <h2 class="h3 mb-3 font-weight-normal">Please sign in
-        </h2>
-      </div>
+  <div class="mb-4">
+    <app-email-input
+      ngDefaultControl
+      [formControl]="email"
+      class="mb-3 d-block"/>
 
-      <div class="mb-3">
-        <app-form-input
-          inputType="email"
-          inputPlaceholder="example@sample.com"
-          inputClass="bottom-group"
-          inputStyle="margin-bottom: -1px"
-          label="Email address"
-          formControlName="email"/>
-        <app-form-input
-          inputType="password"
-          inputPlaceholder="Password"
-          inputClass="top-group"
-          label="Password"
-          formControlName="password"/>
-      </div>
-
-      <div class="checkbox mb-3 text-center">
-        <label style="user-select: none">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-
-      <div class="d-flex gap-3 justify-content-center">
-        <app-primary-button type="submit" class="w-100" btnClass="w-100" (btnClick)="onSignInPressed()">Sign In</app-primary-button>
-      </div>
-    </div>
+    <app-form-input
+      type="password"
+      placeholder="Password"
+      label="Password"
+      [formControl]="password"/>
   </div>
+
+  <app-primary-button [disabled]="form.invalid" [type]="'submit'" class="w-100" (btnClick)="onSignInPressed()">Sign In</app-primary-button>
 </div>

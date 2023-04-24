@@ -4,13 +4,17 @@ import { LoginComponent } from './login/login.component';
 import {AccountRoutingModule} from "./account-routing.module";
 import {SharedModule} from "../shared/shared.module";
 import {CoreModule} from "../core/core.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {EmailValidator, NG_VALIDATORS, ReactiveFormsModule} from "@angular/forms";
+import { AccountRouterPageComponent } from './account-router-page/account-router-page.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    AccountRouterPageComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,

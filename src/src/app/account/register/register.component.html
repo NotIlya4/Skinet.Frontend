@@ -1,0 +1,25 @@
+<div class="text-center" [formGroup]="form" style="width: 300px">
+  <h2 class="mb-4">Please Sign Up</h2>
+
+  <div class="mb-4">
+    <app-form-input
+      type="nickname"
+      placeholder="example"
+      label="Username"
+      class="mb-3 d-block"
+      [formControl]="username"/>
+
+    <app-email-input
+      ngDefaultControl
+      class="mb-3 d-block"
+      [formControl]="email"/>
+
+    <app-form-input
+      type="password"
+      placeholder="Password"
+      label="Password"
+      [formControl]="password"/>
+  </div>
+
+  <app-primary-button [disabled]="form.invalid" [type]="'submit'" class="w-100" (btnClick)="onSubmit()">Sign Up</app-primary-button>
+</div>

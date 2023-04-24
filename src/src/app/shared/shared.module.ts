@@ -10,7 +10,7 @@ import {
 import { PagerHeaderComponent } from './components/paging/pager-header/pager-header.component';
 import { PagerComponent } from './components/paging/pager/pager.component';
 import { SearchComponent } from './components/search/search.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import { TextContentPlaceholderComponent } from './components/placeholders/text-content-placeholder/text-content-placeholder.component';
@@ -27,7 +27,7 @@ import { IncreaseProductsInBasketDirective } from './directives/increase-product
 import { DecreaseProductsInBasketDirective } from './directives/decrease-products-in-basket.directive';
 import { RemoveProductsInBasketDirective } from './directives/remove-products-in-basket.directive';
 import { PrimaryButtonComponent } from './components/buttons/primary-button/primary-button.component';
-import { FormInputComponent } from './components/form-input/form-input.component';
+import { FormInputComponent } from './components/form-inputs/form-input/form-input.component';
 import { SelectComponent } from './components/select/select.component';
 import { ImagePlaceholderComponent } from './components/placeholders/image-placeholder/image-placeholder.component';
 import { CardComponent } from './components/cards/card/card.component';
@@ -40,6 +40,7 @@ import {BreadcrumbModule} from "xng-breadcrumb";
 import {BreadcrumbComponent} from "./components/breadcrumb/breadcrumb.component";
 import { HistoryIconComponent } from './components/icons/history-icon/history-icon.component';
 import { SignOutIconComponent } from './components/icons/sign-out-icon/sign-out-icon.component';
+import { EmailInputComponent } from './components/form-inputs/email-input/email-input.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { SignOutIconComponent } from './components/icons/sign-out-icon/sign-out-
     NavBarComponent,
     BreadcrumbComponent,
     HistoryIconComponent,
-    SignOutIconComponent
+    SignOutIconComponent,
+    EmailInputComponent
   ],
   imports: [
     CommonModule,
@@ -86,7 +88,8 @@ import { SignOutIconComponent } from './components/icons/sign-out-icon/sign-out-
     NgbDropdownMenu,
     NgbDropdownItem,
     NgbDropdownToggle,
-    NgbDropdown
+    NgbDropdown,
+    ReactiveFormsModule
   ],
   exports: [
     NgbPaginationModule,
@@ -116,7 +119,8 @@ import { SignOutIconComponent } from './components/icons/sign-out-icon/sign-out-
     CollectionContainerComponent,
     TabSkeletonComponent,
     NavBarComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    EmailInputComponent
   ]
 })
 export class SharedModule { }

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IRegisterCredentials} from "../../shared/models/register-credentials";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../shared/services/auth/auth.service";
 import {Router} from "@angular/router";
 import {LinkProvider} from "../../shared/services/link-provider.service";
@@ -10,10 +10,12 @@ import {LinkProvider} from "../../shared/services/link-provider.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
-  loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', Validators.email),
-    password: new FormControl('', Validators.required)
+export class LoginComponent implements OnInit {
+  email: FormControl = new FormControl('', Validators.required);
+  password: FormControl = new FormControl('', Validators.required)
+  form: FormGroup = new FormGroup({
+    email: this.email,
+    password: this.password
   });
 
   constructor(private authService: AuthService, private router: Router, private links: LinkProvider) {
@@ -21,8 +23,12 @@ export class LoginComponent {
   }
 
   onSignInPressed(): void {
-    this.authService.login(this.loginForm.value).subscribe(value => {
+    this.authService.login(this.form.value).subscribe(value => {
       this.router.navigateByUrl(this.links.products);
     });
+  }
+
+  ngOnInit(): void {
+
   }
 }

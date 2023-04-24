@@ -11,10 +11,4 @@ export class SearchComponent {
   onSearchClicked(event: any): void {
     this.searchClicked.emit(this.value);
   }
-
-  setValue($event: string): void {
-    if ($event !== this.value) {
-      this.value = $event;
-    }
-  }
 }

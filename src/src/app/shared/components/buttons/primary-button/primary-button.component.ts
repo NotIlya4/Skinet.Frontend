@@ -9,6 +9,8 @@ export class PrimaryButtonComponent {
   @Output() btnClick = new EventEmitter<MouseEvent>();
   @Input() btnClass: string = '';
   @Input() btnStyle: string = '';
+  @Input() type: string = '';
+  @Input() disabled: boolean = false;
 
   onClick($event: MouseEvent){
     this.btnClick.emit($event);
