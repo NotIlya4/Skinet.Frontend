@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {IRegisterCredentials} from "../../models/register-credentials";
-import {catchError, map, Observable, switchMap, throwError} from "rxjs";
+import {catchError, map, tap, Observable, switchMap, throwError} from "rxjs";
 import {IJwtTokenPair} from "../../models/jwt-token-pair";
 import {AuthStorage} from "./auth-storage.service";
 import {IUserInfo} from "../../models/user-info";
+import {IBadResponse} from "../../models/bad-response";
 
 @Injectable({
   providedIn: 'root'
@@ -33,45 +34,74 @@ export class AuthService {
   }
 
   public login(registerCredentials: IRegisterCredentials): Observable<IJwtTokenPair> {
-    return this.handleResponse(this.client.post<IJwtTokenPair>(`${this.baseUrl}login`, registerCredentials));
+    return this.client.post<IJwtTokenPair>(`${this.baseUrl}login`, registerCredentials).pipe(
+      this.pipeSaveJwtPair(),
+      this.pipeMapError()
+    );
   }
 
   public logout(): void {
-    this.client.post(`${this.baseUrl}logout`, this.storage.read()).subscribe();
-    this.storage.clearJwtPair()
+    const request = this.storage.read();
+    this.client.post(`${this.baseUrl}logout`, request).subscribe();
+    this.storage.clearJwtPair();
   }
 
   public register(registerCredentials: IRegisterCredentials): Observable<IJwtTokenPair> {
-    return this.handleResponse(this.client.post<IJwtTokenPair>(`${this.baseUrl}register`, registerCredentials));
+    return this.client.post<IJwtTokenPair>(`${this.baseUrl}register`, registerCredentials).pipe(
+      this.pipeSaveJwtPair(),
+      this.pipeMapError()
+    );
   }
 
   public updateJwtPair(): Observable<IJwtTokenPair> {
     const jwtTokenPair: IJwtTokenPair | null = this.storage.read();
     if (jwtTokenPair === null) {
+      this.storage.clearJwtPair();
       return new Observable<IJwtTokenPair>(subscriber =>
       {
-        this.storage.clearJwtPair();
         subscriber.error(new Error('User is not logged in'))
       });
     }
 
-    return this.handleResponse(this.client.post<IJwtTokenPair>(`${this.baseUrl}updateJwtPair`, jwtTokenPair));
+    return this.client.post<IJwtTokenPair>(`${this.baseUrl}updateJwtPair`, jwtTokenPair).pipe(
+      this.pipeSaveJwtPair(),
+      this.pipeMapError(),
+      this.pipeClearJwtPairOnError()
+    );
   }
 
   private fetchUserInfo(): Observable<IUserInfo> {
-    return this.client.get<IUserInfo>(this.baseUrl);
+    return this.client.get<IUserInfo>(this.baseUrl).pipe(
+      this.pipeMapError()
+    );
+  }
+
+  private pipeSaveJwtPair() {
+    return tap<IJwtTokenPair>(value => {
+      this.storage.save(value);
+    })
+  }
+
+  private pipeClearJwtPairOnError() {
+    return tap<IJwtTokenPair>({
+      error: err =>  {
+        this.storage.clearJwtPair();
+        return throwError(() => err);
+      }
+    })
+  }
+
+  private pipeMapError<T>() {
+    return catchError<T, Observable<never>>((err: HttpErrorResponse) => {
+      const badResponse: IBadResponse = {title: err.error.title, detail: err.error.detail};
+      return throwError(() => badResponse);
+    })
   }
 
   private handleResponse(observable: Observable<IJwtTokenPair>): Observable<IJwtTokenPair> {
     return observable.pipe(
-      map((response) => {
-        this.storage.save(response);
-        return response;
-      }),
-      catchError((err) => {
-        this.storage.clearJwtPair();
-        return throwError(err);
-      })
+      this.pipeSaveJwtPair(),
+      this.pipeMapError()
     )
   }
 }

@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../shared/services/auth/auth.service";
 import {Router} from "@angular/router";
 import {LinkProvider} from "../../shared/services/link-provider.service";
+import {IJwtTokenPair} from "../../shared/models/jwt-token-pair";
+import {IBadResponse} from "../../shared/models/bad-response";
 
 @Component({
   selector: 'app-register',
@@ -18,14 +20,20 @@ export class RegisterComponent {
     email: this.email,
     password: this.password
   });
+  error: string | null = null;
 
   constructor(private authService: AuthService, private router: Router, private links: LinkProvider) {
 
   }
 
   onSubmit(): void {
-    this.authService.register(this.form.value).subscribe(value => {
-      this.router.navigateByUrl(this.links.products);
+    this.authService.register(this.form.value).subscribe({
+      next: (value: IJwtTokenPair) => {
+        this.router.navigateByUrl(this.links.products);
+      },
+      error: (error: IBadResponse) => {
+        this.error = error.detail;
+      }
     });
   }
 }

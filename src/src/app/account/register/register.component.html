@@ -1,5 +1,5 @@
-<div class="text-center" [formGroup]="form" style="width: 300px">
-  <h2 class="mb-4">Please Sign Up</h2>
+<div [formGroup]="form">
+  <h2 class="mb-4 text-center">Please Sign Up</h2>
 
   <div class="mb-4">
     <app-form-input
@@ -20,6 +20,8 @@
       label="Password"
       [formControl]="password"/>
   </div>
+
+  <div *ngIf="error" class="text-danger mb-4">{{error}}</div>
 
   <app-primary-button [disabled]="form.invalid" [type]="'submit'" class="w-100" (btnClick)="onSubmit()">Sign Up</app-primary-button>
 </div>
