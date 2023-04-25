@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {IReadonlyBasketItem} from "../../shared/models/basket-item";
-import {LinkProvider} from "../../shared/services/link-provider.service";
+import {IReadonlyBasketItem} from "../../core/models/basket-item";
+import {LinkProvider} from "../../core/services/link-provider.service";
 
 
 @Component({

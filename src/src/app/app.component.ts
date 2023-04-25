@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Observable, Subject} from "rxjs";
-import {BasketStorage} from "./shared/services/basket-storage.service";
+import {BasketStorage} from "./core/services/basket-storage.service";
 
 @Component({
   selector: 'app-root',

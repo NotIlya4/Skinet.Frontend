@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {BasketStorage} from "../shared/services/basket-storage.service";
-import {IBasketItem, IReadonlyBasketItem} from "../shared/models/basket-item";
+import {BasketStorage} from "../core/services/basket-storage.service";
+import {IBasketItem, IReadonlyBasketItem} from "../core/models/basket-item";
 import {IBasketTotals} from "./order-totals/basket-totals";
 
 @Component({

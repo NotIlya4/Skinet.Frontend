@@ -1,0 +1,23 @@
+<div class="form-floating">
+  <input
+    [disabled]="disabled"
+    [(ngModel)]="value"
+    [type]="type"
+    [class.is-valid]="showValid()"
+    [class.is-invalid]="showInvalid()"
+    (focusout)="onTouched(); touched = true"
+    class="form-control"
+    id="{{label}}"
+    [placeholder]="placeholder">
+  <label for="{{label}}" *ngIf="withLabel">{{label}}</label>
+  <app-loader-icon *ngIf="showSpinner" class="d-block loader"></app-loader-icon>
+  <div *ngIf="showInvalid()" class="invalid-feedback text-start">
+    <div *ngIf="checkIfFlagContain('required')">{{label}} is required</div>
+    <ng-container *ngIf="!checkIfFlagContain('required')">
+      <div *ngIf="checkIfFlagContain('email')">Email must be a valid email address</div>
+      <div *ngIf="checkIfFlagContain('emailBusy')">Email has already been taken</div>
+      <div *ngIf="checkIfFlagContain('usernameBusy')">Username has already been taken</div>
+      <div *ngIf="checkIfFlagContain('notOnlyLettersAndDigits')">Only letters and numbers are allowed</div>
+    </ng-container>
+  </div>
+</div>

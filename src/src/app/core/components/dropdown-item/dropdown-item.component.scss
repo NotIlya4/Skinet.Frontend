@@ -1,0 +1,11 @@
+.dropdown-arrow {
+  position: relative;
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.dropdown-arrow.active {
+  opacity: 100%;
+  transition: all 0.5s;
+  transform: translateX(0);
+}

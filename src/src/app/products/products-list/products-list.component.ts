@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {IProduct} from "../../shared/models/product";
-import {Pagination} from "../../shared/models/pagination";
-import {IProductsFiltering} from "../../shared/services/product/products-filtering";
-import {ProductsService} from "../../shared/services/product/products.service";
-import {BrandsService} from "../../shared/services/product/brands.service";
-import {ProductTypesService} from "../../shared/services/product/product-types.service";
-import {PlaceholderSize} from "../../shared/components/placeholders/text-content-placeholder/placeholder-size";
+import {IProduct} from "../../core/models/product";
+import {Pagination} from "../../core/models/pagination";
+import {IProductsFiltering} from "../../core/services/product/products-filtering";
+import {ProductsService} from "../../core/services/product/products.service";
+import {BrandsService} from "../../core/services/product/brands.service";
+import {ProductTypesService} from "../../core/services/product/product-types.service";
+import {PlaceholderSize} from "../../core/components/placeholders/text-content-placeholder/placeholder-size";
 
 @Component({
   selector: 'app-products-list',

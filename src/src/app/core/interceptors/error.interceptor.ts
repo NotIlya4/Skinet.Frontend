@@ -3,9 +3,10 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
-import {delay, Observable} from 'rxjs';
+import {catchError, delay, Observable, switchMap, throwError} from 'rxjs';
+import {IBadResponse} from "../models/bad-response";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -13,6 +14,12 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(request).pipe(delay(0));
+    return next.handle(request).pipe(
+      delay(0),
+      catchError((err: HttpErrorResponse) => {
+        const badResponse: IBadResponse = {title: err.error.title, detail: err.error.detail};
+        return throwError(() => badResponse);
+      })
+    );
   }
 }

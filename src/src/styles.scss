@@ -1,5 +1,32 @@
-@import 'bootstrap/scss/bootstrap';
-@import 'bootswatch/dist/sandstone/bootstrap';
+$white:       #fff;
+$gray-100:    #f8f9fa;
+$gray-200:    #f6f6f6;
+$gray-300:    #e1e1e1;
+$gray-400:    #dcdcdc;
+$gray-500:    #989898;
+$gray-600:    #8c8c8c;
+$gray-700:    #5b5b5b;
+$gray-800:    #414141;
+$gray-900:    #262626;
+
+$bg:          $white;
+$hover-bg:    $gray-200;
+$active-bg:   $gray-300;
+
+$body-color:  $gray-800;
+
+$dropdown-link-color:   $body-color;
+
+@import "bootswatch/dist/sandstone/variables";
+
+
+@import "bootstrap/scss/bootstrap";
+@import "bootswatch/dist/sandstone/bootswatch";
+
+.sandstone {
+  font-weight: 400;
+}
+
 
 body {
   min-width: 320px;
@@ -117,4 +144,8 @@ app-nav-bar {
 .white-mask {
   @extend .mask;
   background-color: hsla(0,0%,100%,0.5);
+}
+
+div:focus, span:focus {
+  outline: none !important;
 }

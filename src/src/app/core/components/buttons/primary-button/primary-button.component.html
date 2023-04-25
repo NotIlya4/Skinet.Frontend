@@ -1,0 +1,7 @@
+<button
+  [disabled]="disabled"
+  [type]="type"
+  [class.app-primary-button]="!outline"
+  [class.app-primary-outline-button]="outline"
+  class="w-100 h-100 {{btnClass}}"
+  style="{{btnStyle}}"><ng-content></ng-content></button>

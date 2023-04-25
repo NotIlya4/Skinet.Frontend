@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {IProduct} from "../../shared/models/product";
-import {LinkProvider} from "../../shared/services/link-provider.service";
-import {BasketStorage} from "../../shared/services/basket-storage.service";
+import {IProduct} from "../../core/models/product";
+import {LinkProvider} from "../../core/services/link-provider.service";
+import {BasketStorage} from "../../core/services/basket-storage.service";
 
 @Component({
   selector: 'app-product-card',

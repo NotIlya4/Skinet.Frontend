@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {IProduct} from "../../shared/models/product";
+import {IProduct} from "../../core/models/product";
 import {ActivatedRoute} from "@angular/router";
 import {faMinusCircle} from "@fortawesome/free-solid-svg-icons/faMinusCircle";
 import {faPlusCircle} from "@fortawesome/free-solid-svg-icons/faPlusCircle";
 import {BreadcrumbService} from "xng-breadcrumb";
-import {ProductsService} from "../../shared/services/product/products.service";
+import {ProductsService} from "../../core/services/product/products.service";
 
 @Component({
   selector: 'app-product-details',

@@ -1,0 +1,8 @@
+<div (mouseenter)="dropdown.open()" (mouseleave)="dropdown.close()" class="h-100 d-flex justify-content-center p-2" ngbDropdown display="dynamic" placement="bottom-end" #dropdown="ngbDropdown">
+  <div style="font-size: 1em; text-transform: none;" class="no-select pointer align-self-center" tabindex="0" ngbDropdownToggle id="navbarDropdown3">
+    <ng-container *ngTemplateOutlet="dropdownToggle"></ng-container>
+  </div>
+  <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu p-3">
+    <ng-container *ngTemplateOutlet="dropdownMenuItems"></ng-container>
+  </div>
+</div>

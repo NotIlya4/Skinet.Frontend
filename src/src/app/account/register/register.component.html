@@ -19,5 +19,5 @@
 
   <div *ngIf="error" class="text-danger mb-4">{{error}}</div>
 
-  <app-primary-button [disabled]="!form.valid" [type]="'submit'" class="w-100" (btnClick)="onSubmit()">Sign Up</app-primary-button>
+  <app-submit-form-button [status]="form.status" class="w-100" (click)="onSubmit()">Sign Up</app-submit-form-button>
 </div>

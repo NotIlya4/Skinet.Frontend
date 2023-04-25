@@ -1,0 +1,6 @@
+<div (mouseenter)="hover = true;" (mouseleave)="hover = false;" ngbDropdownItem class="d-flex justify-content-between rounded dropdown-item p-3 pointer">
+  <span class="me-5">
+    <ng-content/>
+  </span>
+  <app-arrow-icon class="dropdown-arrow" [class.active]="hover"/>
+</div>
