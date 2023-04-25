@@ -40,7 +40,11 @@ import {BreadcrumbModule} from "xng-breadcrumb";
 import {BreadcrumbComponent} from "./components/breadcrumb/breadcrumb.component";
 import { HistoryIconComponent } from './components/icons/history-icon/history-icon.component';
 import { SignOutIconComponent } from './components/icons/sign-out-icon/sign-out-icon.component';
-import { EmailInputComponent } from './components/form-inputs/email-input/email-input.component';
+import { RegisterFormEmailInputComponent } from './components/form-inputs/register-form-email-input/register-form-email-input.component';
+import { RegisterFormUsernameInputComponent } from './components/form-inputs/register-form-username-input/register-form-username-input.component';
+import { PasswordInputComponent } from './components/form-inputs/password-input/password-input.component';
+import { LoginFormEmailInputComponent } from './components/form-inputs/login-form-email-input/login-form-email-input.component';
+import { LoaderIconComponent } from './components/icons/loader-icon/loader-icon.component';
 
 
 @NgModule({
@@ -74,7 +78,11 @@ import { EmailInputComponent } from './components/form-inputs/email-input/email-
     BreadcrumbComponent,
     HistoryIconComponent,
     SignOutIconComponent,
-    EmailInputComponent
+    RegisterFormEmailInputComponent,
+    RegisterFormUsernameInputComponent,
+    PasswordInputComponent,
+    LoginFormEmailInputComponent,
+    LoaderIconComponent
   ],
   imports: [
     CommonModule,
@@ -120,7 +128,10 @@ import { EmailInputComponent } from './components/form-inputs/email-input/email-
     TabSkeletonComponent,
     NavBarComponent,
     BreadcrumbComponent,
-    EmailInputComponent
+    RegisterFormEmailInputComponent,
+    RegisterFormUsernameInputComponent,
+    PasswordInputComponent,
+    LoginFormEmailInputComponent
   ]
 })
 export class SharedModule { }

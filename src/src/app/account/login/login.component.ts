@@ -12,9 +12,9 @@ import {IBadResponse} from "../../shared/models/bad-response";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   email: FormControl = new FormControl('', Validators.required);
-  password: FormControl = new FormControl('', Validators.required)
+  password: FormControl = new FormControl('', Validators.required);
   form: FormGroup = new FormGroup({
     email: this.email,
     password: this.password
@@ -34,9 +34,5 @@ export class LoginComponent implements OnInit {
         this.error = error.detail;
       }
     });
-  }
-
-  ngOnInit(): void {
-
   }
 }

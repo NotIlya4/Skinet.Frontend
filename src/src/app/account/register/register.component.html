@@ -2,26 +2,22 @@
   <h2 class="mb-4 text-center">Please Sign Up</h2>
 
   <div class="mb-4">
-    <app-form-input
-      type="nickname"
-      placeholder="example"
-      label="Username"
+    <app-register-form-username-input
+      ngDefaultControl
       class="mb-3 d-block"
       [formControl]="username"/>
 
-    <app-email-input
+    <app-register-form-email-input
       ngDefaultControl
       class="mb-3 d-block"
       [formControl]="email"/>
 
-    <app-form-input
-      type="password"
-      placeholder="Password"
-      label="Password"
+    <app-password-input
+      ngDefaultControl
       [formControl]="password"/>
   </div>
 
   <div *ngIf="error" class="text-danger mb-4">{{error}}</div>
 
-  <app-primary-button [disabled]="form.invalid" [type]="'submit'" class="w-100" (btnClick)="onSubmit()">Sign Up</app-primary-button>
+  <app-primary-button [disabled]="!form.valid" [type]="'submit'" class="w-100" (btnClick)="onSubmit()">Sign Up</app-primary-button>
 </div>

@@ -2,19 +2,17 @@
   <h2 class="mb-4 text-center">Please Sign In</h2>
 
   <div class="mb-4">
-    <app-email-input
+    <app-login-form-email-input
       ngDefaultControl
       [formControl]="email"
       class="mb-3 d-block"/>
 
-    <app-form-input
-      type="password"
-      placeholder="Password"
-      label="Password"
+    <app-password-input
+      ngDefaultControl
       [formControl]="password"/>
   </div>
 
   <div *ngIf="error" class="text-danger mb-4">{{error}}</div>
 
-  <app-primary-button [disabled]="form.invalid" [type]="'submit'" class="w-100" (btnClick)="onSignInPressed()">Sign In</app-primary-button>
+  <app-primary-button [disabled]="!form.valid" [type]="'submit'" class="w-100" (btnClick)="onSignInPressed()">Sign In</app-primary-button>
 </div>

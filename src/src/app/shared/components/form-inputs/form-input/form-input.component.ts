@@ -12,6 +12,7 @@ export class FormInputComponent implements ControlValueAccessor {
   @Input() label: string = 'Label';
   @Input() withLabel: boolean = true;
   @Input() disableValidIndicator: boolean = false;
+  @Input() showSpinner: boolean = false;
 
   _value: string = '';
   _touched: boolean = false;
