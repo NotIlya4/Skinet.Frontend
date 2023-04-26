@@ -1,18 +1,20 @@
-<div [formGroup]="form" (ngSubmit)="onSignInPressed()">
+<div [formGroup]="form" (ngSubmit)="onSubmit()">
   <h2 class="mb-4 text-center">Please Sign In</h2>
 
   <div class="mb-4">
     <app-login-form-email-input
+      (keydown.enter)="form.valid && onSubmit()"
       ngDefaultControl
       [formControl]="email"
       class="mb-3 d-block"/>
 
     <app-password-input
+      (keydown.enter)="form.valid && onSubmit()"
       ngDefaultControl
       [formControl]="password"/>
   </div>
 
   <div *ngIf="error" class="text-danger mb-4">{{error}}</div>
 
-  <app-submit-form-button [status]="form.status" class="w-100" (click)="onSignInPressed()">Sign In</app-submit-form-button>
+  <app-submit-form-button [status]="form.status" class="w-100" (click)="onSubmit()">Sign In</app-submit-form-button>
 </div>

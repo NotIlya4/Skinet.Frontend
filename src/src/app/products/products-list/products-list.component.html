@@ -31,7 +31,7 @@
       <app-pager-header *ngIf="productsTotalCount !== null" [currentPage]="currentPage" [pageSize]="pageSize" [objectsCount]="productsTotalCount"/>
       <app-pager-header-skeleton *ngIf="productsTotalCount === null"/>
 
-      <app-search (searchClicked)="onSearchChange($event)"/>
+      <app-search [disabled]="isLoading" (searchClicked)="onSearchChange($event)"/>
     </div>
 
     <div class="mb-3">

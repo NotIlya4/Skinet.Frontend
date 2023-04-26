@@ -1,7 +1,8 @@
 <div class="d-flex gap-2">
   <app-search-input
+    [disabled]="disabled"
     [(value)]="value"
     class="d-inline-block"
     style="width: 300px"/>
-  <app-primary-button [outline]="true" (click)="onSearchClicked($event)">Search</app-primary-button>
+  <app-primary-button [disabled]="disabled" [outline]="true" (click)="onSearchClicked($event)">Search</app-primary-button>
 </div>

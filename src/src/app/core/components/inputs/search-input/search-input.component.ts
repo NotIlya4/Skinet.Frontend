@@ -6,6 +6,8 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrls: ['./search-input.component.scss']
 })
 export class SearchInputComponent {
+  @Input() disabled: boolean = false;
+
   _value: string = '';
   get value() {
     return this._value;

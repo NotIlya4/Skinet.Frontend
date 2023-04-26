@@ -8,6 +8,7 @@ import {
 import {catchError, Observable, switchMap, throwError} from 'rxjs';
 import {AuthService} from "../services/auth/auth.service";
 import {IJwtTokenPair} from "../models/jwt-token-pair";
+import {IBadResponse} from "../models/bad-response";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -19,7 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
     request = this.setAuthorizationHeader(request);
 
     return next.handle(request).pipe(
-      catchError((error: HttpErrorResponse) => {
+      catchError((error: any) => {
         if (this.isResponseIndicatesThatJwtTokenExpired(error)) {
           return this.handleExpiredJwtToken(request, next);
         }
@@ -37,8 +38,18 @@ export class AuthInterceptor implements HttpInterceptor {
     )
   }
 
-  private isResponseIndicatesThatJwtTokenExpired(badResponse: HttpErrorResponse): boolean {
-    return badResponse.error.title === 'Jwt token expired'
+  private isResponseIndicatesThatJwtTokenExpired(badResponse: IBadResponse | HttpErrorResponse): boolean {
+    const parsedBadResponse: IBadResponse = badResponse as IBadResponse;
+    if (parsedBadResponse) {
+      return parsedBadResponse.title === 'Jwt token expired';
+    }
+
+    const httpBadResponse: HttpErrorResponse = badResponse as HttpErrorResponse;
+    if (httpBadResponse) {
+      return httpBadResponse.error.title === 'Jwt token expired';
+    }
+
+    return false;
   }
 
   private setAuthorizationHeader(request: HttpRequest<any>): HttpRequest<any> {

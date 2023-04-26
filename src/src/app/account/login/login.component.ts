@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSignInPressed(): void {
+  onSubmit(): void {
     this.error = null;
     this.form.disable();
     this.authService.login(this.form.value).subscribe({
@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
         this.navigator.navigate(this.returnUrl);
       },
       error: (error: IBadResponse) => {
+        console.log(error);
         this.form.enable();
         this.error = error.detail;
       }

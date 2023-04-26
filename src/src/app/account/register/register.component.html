@@ -1,18 +1,21 @@
-<div [formGroup]="form">
+<div [formGroup]="form" (ngSubmit)="onSubmit()">
   <h2 class="mb-4 text-center">Please Sign Up</h2>
 
   <div class="mb-4">
     <app-register-form-username-input
+      (keydown.enter)="form.valid && onSubmit()"
       ngDefaultControl
       class="mb-3 d-block"
       [formControl]="username"/>
 
     <app-register-form-email-input
+      (keydown.enter)="form.valid && onSubmit()"
       ngDefaultControl
       class="mb-3 d-block"
       [formControl]="email"/>
 
     <app-password-input
+      (keydown.enter)="form.valid && onSubmit()"
       ngDefaultControl
       [formControl]="password"/>
   </div>
