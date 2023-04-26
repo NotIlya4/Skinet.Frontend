@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {IRegisterCredentials} from "../../models/register-credentials";
@@ -33,17 +33,21 @@ export class AuthService {
     );
   }
 
-  public get isLoggedIn$(): Observable<boolean> {
-    return this.userInfo$.pipe(
-      map(u => {
-        return u !== null;
-      })
-    )
+  private _registerHappen = new EventEmitter<IJwtTokenPair>();
+  public get registerHappen(): Observable<IJwtTokenPair> {
+    return this._registerHappen;
+  }
+  private _loginHappen = new EventEmitter<IJwtTokenPair>();
+  public get loginHappen(): Observable<IJwtTokenPair> {
+    return this._loginHappen;
   }
 
   public login(registerCredentials: IRegisterCredentials): Observable<IJwtTokenPair> {
     return this.client.post<IJwtTokenPair>(`${this.baseUrl}login`, registerCredentials).pipe(
-      this.pipeSaveJwtPair()
+      this.pipeSaveJwtPair(),
+      tap(jwtPair => {
+        this._loginHappen.emit(jwtPair);
+      })
     );
   }
 
@@ -55,7 +59,10 @@ export class AuthService {
 
   public register(registerCredentials: IRegisterCredentials): Observable<IJwtTokenPair> {
     return this.client.post<IJwtTokenPair>(`${this.baseUrl}register`, registerCredentials).pipe(
-      this.pipeSaveJwtPair()
+      this.pipeSaveJwtPair(),
+      tap(jwtTokenPair => {
+        this._registerHappen.emit(jwtTokenPair);
+      })
     );
   }
 

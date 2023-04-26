@@ -1,11 +1,11 @@
 import {IProduct} from "./product";
 
-export interface IBasketItem extends IReadonlyBasketItem {
-  product: IProduct
+export interface IBasketItem {
+  productId: string
   quantity: number
 }
 
-export interface IReadonlyBasketItem{
-  readonly product: IProduct
-  readonly quantity: number
+export interface IBasketProductItem {
+  product: IProduct,
+  quantity: number
 }

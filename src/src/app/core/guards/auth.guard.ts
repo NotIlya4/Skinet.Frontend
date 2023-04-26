@@ -18,11 +18,8 @@ export const authGuard: CanActivateFn = (next, state) => {
   const router: Router = inject(Router);
   const navigator: NavigatorService = inject(NavigatorService);
 
-  return authService.isLoggedIn$.pipe(
-    tap(isLoggedIn => {
-      if (!isLoggedIn) {
-        navigator.navigateLogin(state.url);
-      }
-    })
-  )
+  if (authService.jwtTokenPair === null) {
+    navigator.navigateLogin(state.url);
+  }
+  return true;
 }

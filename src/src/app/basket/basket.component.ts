@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {BasketStorage} from "../core/services/basket-storage.service";
-import {IBasketItem, IReadonlyBasketItem} from "../core/models/basket-item";
+import {BasketStorage} from "../core/services/basket/basket-storage.service";
+import {IBasketItem, IBasketProductItem} from "../core/models/basket-item";
 import {IBasketTotals} from "./order-totals/basket-totals";
+import {BasketService} from "../core/services/basket/basket.service";
 
 @Component({
   selector: 'app-basket',
@@ -9,16 +10,14 @@ import {IBasketTotals} from "./order-totals/basket-totals";
   styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent {
-  basketItems: IReadonlyBasketItem[]
-  basketTotals: IBasketTotals;
+  basketProductItems: IBasketProductItem[] = [];
+  basketTotals: IBasketTotals = {subtotal: 0, total: 0, shipping: 0};
 
-  constructor(private basketStorage: BasketStorage) {
-    this.basketItems = basketStorage.basketItems;
-    basketStorage
+  constructor(private basketService: BasketService) {
+    basketService
       .basketItems$
-      .subscribe((value) => this.basketItems = value);
-    this.basketTotals = basketStorage.basketTotals;
-    basketStorage
+      .subscribe((value) => this.basketProductItems = value);
+    basketService
       .basketTotals$
       .subscribe(value => this.basketTotals = value);
   }

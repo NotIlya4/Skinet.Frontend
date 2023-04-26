@@ -1,9 +1,10 @@
 import {Component, Input} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {LinkProvider} from "../../services/link-provider.service";
-import {BasketStorage} from "../../services/basket-storage.service";
+import {BasketStorage} from "../../services/basket/basket-storage.service";
 import {IUserInfo} from "../../models/user-info";
 import {AuthService} from "../../services/auth/auth.service";
+import {BasketService} from "../../services/basket/basket.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,7 +18,7 @@ export class NavBarComponent {
   cardValue: number = 0;
   userInfo: IUserInfo | null = null;
 
-  constructor(public linkProvider: LinkProvider, private basketService: BasketStorage, private authService: AuthService) {
+  constructor(public linkProvider: LinkProvider, private basketService: BasketService, private authService: AuthService) {
     basketService.totalQuantity$.subscribe(value => this.cardValue = value);
     authService.userInfo$.subscribe(value => {
       this.userInfo = value;

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {BasketStorage} from "../../core/services/basket-storage.service";
+import {BasketStorage} from "../../core/services/basket/basket-storage.service";
 import {Observable} from "rxjs";
 import {IBasketTotals} from "./basket-totals";
 
