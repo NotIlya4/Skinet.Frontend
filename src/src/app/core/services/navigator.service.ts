@@ -18,10 +18,6 @@ export class NavigatorService {
     this.navigate(this.links.products);
   }
 
-  public navigateProductDetails(id: string): void {
-    this.navigate(this.links.productDetail(id));
-  }
-
   public navigateLogin(returnUrl: string | null = null): void {
     this.navigateWithReturnUrl(this.links.login, returnUrl);
   }

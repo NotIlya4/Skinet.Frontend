@@ -18,6 +18,7 @@
       <div *ngIf="checkIfFlagContain('emailBusy')">Email has already been taken</div>
       <div *ngIf="checkIfFlagContain('usernameBusy')">Username has already been taken</div>
       <div *ngIf="checkIfFlagContain('notOnlyLettersAndDigits')">Only letters and numbers are allowed</div>
+      <div *ngIf="isMinLength() !== null">Length must be {{isMinLength()}} characters or longer</div>
     </ng-container>
   </div>
 </div>

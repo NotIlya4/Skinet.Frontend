@@ -71,6 +71,14 @@ export class FormInputComponent implements ControlValueAccessor {
     return false;
   }
 
+  isMinLength(): number | null {
+    if (this.control.errors) {
+      const min: number | undefined = this.control.errors['minlength']['requiredLength'];
+      return min === undefined ? null : min;
+    }
+    return null;
+  }
+
   registerOnChange(onChange: any) {
     this.valueChange.subscribe(value => {
       onChange(value);

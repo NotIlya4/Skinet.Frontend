@@ -8,14 +8,6 @@ export class LinkProvider {
     return '/shop/basket';
   }
 
-  productDetail(productId: string): string {
-    return `/shop/products/${productId}`;
-  }
-
-  get home(): string {
-    return '/';
-  }
-
   get products(): string {
     return '/shop/products';
   }

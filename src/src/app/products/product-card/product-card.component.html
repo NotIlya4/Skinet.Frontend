@@ -9,7 +9,6 @@
           btnClass="right-group w-100 h-100">
           <app-shopping-card-icon></app-shopping-card-icon></app-primary-button>
         <app-primary-button
-          [routerLink]="linkProvider.productDetail(product.id)"
           style="height: 40px; width: 50%"
           btnClass="left-group w-100 h-100">View</app-primary-button>
       </div>
@@ -20,7 +19,7 @@
 <ng-template #body>
   <div class="d-flex flex-column">
     <div class="mb-2">
-      <app-link [routerLink]="linkProvider.productDetail(product.id)">{{product.name}}</app-link>
+      <app-link>{{product.name}}</app-link>
     </div>
     <span class="mb-2 card-subtitle text-muted">{{product.price | currency}}</span>
     <p class="card-text">{{product.description}}</p>

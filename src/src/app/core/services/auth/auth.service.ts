@@ -7,6 +7,7 @@ import {IJwtTokenPair} from "../../models/jwt-token-pair";
 import {AuthStorage} from "./auth-storage.service";
 import {IUserInfo} from "../../models/user-info";
 import {IBadResponse} from "../../models/bad-response";
+import {NavigatorService} from "../navigator.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import {IBadResponse} from "../../models/bad-response";
 export class AuthService {
   private baseUrl: string = environment.accountServiceUrl;
 
-  constructor(private client: HttpClient, private storage: AuthStorage) {
+  constructor(private client: HttpClient, private storage: AuthStorage, private navigator: NavigatorService) {
 
   }
 
@@ -31,6 +32,10 @@ export class AuthService {
         return new Observable<null>(subscriber => {subscriber.next(null)});
       })
     );
+  }
+
+  public get isUserLogin(): boolean {
+    return this.storage.read() !== null;
   }
 
   private _registerHappen = new EventEmitter<IJwtTokenPair>();
@@ -104,6 +109,7 @@ export class AuthService {
     return tap<IJwtTokenPair>({
       error: err =>  {
         this.storage.clearJwtPair();
+        this.navigator.navigateLogin();
         return throwError(() => err);
       }
     })

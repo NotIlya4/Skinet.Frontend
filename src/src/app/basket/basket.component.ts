@@ -17,8 +17,5 @@ export class BasketComponent {
     basketService
       .basketItems$
       .subscribe((value) => this.basketProductItems = value);
-    basketService
-      .basketTotals$
-      .subscribe(value => this.basketTotals = value);
   }
 }

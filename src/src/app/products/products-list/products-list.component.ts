@@ -5,7 +5,6 @@ import {IProductsFiltering} from "../../core/services/product/products-filtering
 import {ProductsService} from "../../core/services/product/products.service";
 import {BrandsService} from "../../core/services/product/brands.service";
 import {ProductTypesService} from "../../core/services/product/product-types.service";
-import {PlaceholderSize} from "../../core/components/placeholders/text-content-placeholder/placeholder-size";
 
 @Component({
   selector: 'app-products-list',

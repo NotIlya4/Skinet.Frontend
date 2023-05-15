@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {FormControl, Validators} from "@angular/forms";
 import {ValidatorsProvider} from "../../../services/validators-provider.service";
 
 @Component({
@@ -15,5 +15,6 @@ export class PasswordInputComponent implements OnInit {
 
   ngOnInit(): void {
     this.formControl.addValidators(this.validators.isPasswordStrengthEnough);
+    this.formControl.addValidators(Validators.minLength(8));
   }
 }

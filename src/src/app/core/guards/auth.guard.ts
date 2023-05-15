@@ -21,5 +21,6 @@ export const authGuard: CanActivateFn = (next, state) => {
   if (authService.jwtTokenPair === null) {
     navigator.navigateLogin(state.url);
   }
+
   return true;
 }

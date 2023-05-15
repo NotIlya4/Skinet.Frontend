@@ -85,6 +85,8 @@ export class BasketService {
   private updateAndSave(): void {
     this.update();
     this.saveToLocal();
-    this.saveToBackend();
+    if (this.authService.isUserLogin) {
+      this.saveToBackend();
+    }
   }
 }

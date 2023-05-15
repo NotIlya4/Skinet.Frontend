@@ -1,11 +1,9 @@
 <nav class="navbar navbar-expand-{{mobileModThreshold}} navbar-light text-uppercase bg-opacity-100 bg-white m-0 p-0 h-100 shadow-sm">
 
-  <a [routerLink]="'/'" class="ms-2">
-    <img class="skinet-image"
-         style="width: 10em; height: auto"
-         src="{{logoPictureUri}}"
-         alt="">
-  </a>
+  <div [routerLink]="linkProvider.products" class="ms-3 pointer d-flex justify-content-center " style="height: 64px">
+    <app-shop-icon class="align-self-center"/>
+    <span class="ms-2 d-inline navbar-brand align-self-center" style="text-transform: none;">YetAnotherMarketplace</span>
+  </div>
 
   <button
     class="navbar-toggler me-3" type="button"
@@ -16,9 +14,6 @@
     <div class="col-{{mobileModThreshold}} d-{{mobileModThreshold}}-flex justify-content-center text-center">
 
       <a class="nav-item nav-link"
-         [routerLink]="linkProvider.home"
-         routerLinkActive="active"
-         [routerLinkActiveOptions]="{exact: true}"
          (click)="isMenuCollapsed=true">Home</a>
       <a class="nav-item nav-link"
          [routerLink]="linkProvider.products"

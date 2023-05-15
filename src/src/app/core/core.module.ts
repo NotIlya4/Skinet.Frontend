@@ -52,6 +52,7 @@ import { DropdownItemComponent } from './components/dropdown-item/dropdown-item.
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { ArrowIconComponent } from './components/icons/arrow-icon/arrow-icon.component';
 import { SearchInputComponent } from './components/inputs/search-input/search-input.component';
+import { ShopIconComponent } from './components/icons/shop-icon/shop-icon.component';
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import { SearchInputComponent } from './components/inputs/search-input/search-in
     DropdownItemComponent,
     DropdownComponent,
     ArrowIconComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    ShopIconComponent
   ],
   imports: [
     CommonModule,
