@@ -3,10 +3,10 @@
 WORKDIR /app
 
 COPY src/package*.json ./
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 COPY src/ .
-RUN node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --verbose
+RUN node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build
 
 FROM nginx
 EXPOSE 80
