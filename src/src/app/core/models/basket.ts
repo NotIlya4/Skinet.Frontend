@@ -44,7 +44,6 @@ export class Basket {
   }
 
   private findItemIndex(product: IProduct): number {
-    console.log(this._items);
     return this._items.findIndex(i => i.product.id === product.id);
   }
 }
