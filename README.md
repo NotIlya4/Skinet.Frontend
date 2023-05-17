@@ -1,4 +1,4 @@
-# Skinet.Frontend
+# Frontend
 Angular frontend app. 
 
 Currently ready:
