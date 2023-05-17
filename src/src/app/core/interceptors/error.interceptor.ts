@@ -17,7 +17,6 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       delay(0),
       catchError((err: any) => {
-        console.log(err)
         if (err instanceof HttpErrorResponse) {
           const badResponse: IBadResponse = {title: err.error.title, detail: err.error.detail};
           return throwError(() => badResponse);
