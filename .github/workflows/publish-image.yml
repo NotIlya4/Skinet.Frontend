@@ -35,7 +35,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: notilya4/frontend
+          images: notilya4/yet-another-marketplace.frontend
           tags: |
             type=sha
             type=semver,pattern={{version}}
