@@ -14,4 +14,4 @@ This is an Angular frontend app for YetAnotherMarketplace. It speaks with backen
 ## Pages
 - `Shop` This page contains list of products with searching, sorting, filtering and pagination. Navigate: `localhost:4200/shop/products`.
 - `Basket` This is a basket management page, you can increase/decrease/delete products in basket. Navigate: `http://localhost:4200/shop/basket`.
-- `Login/Register` This is a login/register form. Navigate: `localhost:4200/account/login`, `localhost:4200/account/register`.
+- `Login/Register` This is a login/register form. Navigate: `localhost:4200/account/login`, `localhost:4200/account/register`. 
